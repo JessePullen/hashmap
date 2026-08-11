@@ -17,8 +17,13 @@ export default class HashMap {
 		return hashCode;
 	}
 	set(key, value) {
-		const hash = this.hash(key);
-		const bucket = this.buckets[hash];
+		const index = this.hash(key);
+
+		if (index < 0 || index >= this.buckets.length) {
+			throw new Error('Trying to access index out of bounds');
+		}
+
+		const bucket = this.buckets[index];
 
 		// Overwite value if key exists
 		for (let item of bucket) {
@@ -31,8 +36,13 @@ export default class HashMap {
 		bucket.push([key, value]);
 	}
 	get(key) {
-		const hash = this.hash(key);
-		const bucket = this.buckets[hash];
+		const index = this.hash(key);
+
+		if (index < 0 || index >= this.buckets.length) {
+			throw new Error('Trying to access index out of bounds');
+		}
+
+		const bucket = this.buckets[index];
 
 		for (let item of bucket) {
 			if (item[0] === key) {
@@ -42,8 +52,13 @@ export default class HashMap {
 		return null;
 	}
 	has(key) {
-		const hash = this.hash(key);
-		const bucket = this.buckets[hash];
+		const index = this.hash(key);
+
+		if (index < 0 || index >= this.buckets.length) {
+			throw new Error('Trying to access index out of bounds');
+		}
+
+		const bucket = this.buckets[index];
 
 		for (let item of bucket) {
 			if (item[0] === key) {
@@ -53,12 +68,17 @@ export default class HashMap {
 		return false;
 	}
 	remove(key) {
-		const hash = this.hash(key);
-		const bucket = this.buckets[hash];
-		const index = bucket.findIndex((item) => item[0] === key);
+		const index = this.hash(key);
 
-		if (index !== -1) {
-			bucket.splice(index, index + 1);
+		if (index < 0 || index >= this.buckets.length) {
+			throw new Error('Trying to access index out of bounds');
+		}
+
+		const bucket = this.buckets[index];
+		const keyIndex = bucket.findIndex((item) => item[0] === key);
+
+		if (keyIndex !== -1) {
+			bucket.splice(keyIndex, keyIndex + 1);
 			return true;
 		}
 
