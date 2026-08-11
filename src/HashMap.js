@@ -41,6 +41,17 @@ export default class HashMap {
 		}
 		return null;
 	}
+	has(key) {
+		const hash = this.hash(key);
+		const bucket = this.buckets[hash];
+
+		for (let item of bucket) {
+			if (item[0] === key) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
 
 // Index out of range error

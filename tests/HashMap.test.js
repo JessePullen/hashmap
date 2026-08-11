@@ -12,9 +12,11 @@ test('Set takes a key and a value assigned to the key, this should overwite exis
 	let hashMap = new HashMap(0.75, 16);
 
 	hashMap.set('Carlos', 'I am the old value.');
+
 	expect(hashMap.get('Carlos')).toBe('I am the old value.');
 
 	hashMap.set('Carlos', 'I am the new value.');
+
 	expect(hashMap.get('Carlos')).toBe('I am the new value.');
 });
 
@@ -22,4 +24,14 @@ test('Get returns value of key or returns null', () => {
 	let hashMap = new HashMap(0.75, 16);
 
 	expect(hashMap.get('Test')).toBe(null);
+});
+
+test('Inputting the value should return true or false based on whether the key is present', () => {
+	let hashMap = new HashMap(0.75, 16);
+
+	expect(hashMap.has('Carlos')).toBe(false);
+
+	hashMap.set('Carlos', 'I am the old value.');
+
+	expect(hashMap.has('Carlos')).toBe(true);
 });
