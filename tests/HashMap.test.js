@@ -35,3 +35,14 @@ test('Inputting the value should return true or false based on whether the key i
 
 	expect(hashMap.has('Carlos')).toBe(true);
 });
+
+test('Inputting a key should remove the entry and return true or return false if key is not in hashmap', () => {
+	let hashMap = new HashMap(0.75, 16);
+
+	expect(hashMap.remove('Carlos')).toBe(false);
+
+	hashMap.set('Carlos', 'I am the old value.');
+
+	expect(hashMap.remove('Carlos')).toBe(true);
+	expect(hashMap.has('Carlos')).toBe(false);
+});
