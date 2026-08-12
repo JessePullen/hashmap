@@ -95,3 +95,17 @@ test('values method returns all values in the hash map', () => {
 
 	expect(hashMap.values()).toEqual(['New value', 'test', 'I am the old value.']);
 });
+
+test('entried method returns all keys and values in the hash map', () => {
+	const hashMap = new HashMap(0.75, 16);
+
+	hashMap.set('Carlos', 'I am the old value.');
+	hashMap.set('Rama', 'New value');
+	hashMap.set('Sita', 'test');
+
+	expect(hashMap.entries()).toEqual([
+		['Rama', 'New value'],
+		['Sita', 'test'],
+		['Carlos', 'I am the old value.'],
+	]);
+});
