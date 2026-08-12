@@ -103,4 +103,13 @@ export default class HashMap {
 		}
 		return result;
 	}
+	values() {
+		const result = [];
+		for (const bucket of this.buckets) {
+			for (const entries of bucket) {
+				result.push(entries[1]);
+			}
+		}
+		return result;
+	}
 }
