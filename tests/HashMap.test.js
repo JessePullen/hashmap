@@ -66,3 +66,12 @@ test('Length should return number of stored keys inside the hash map', () => {
 
 	expect(hashMap.length()).toBe(1);
 });
+
+test('Clear should remove all entries in the hash map', () => {
+	const hashMap = new HashMap(0.75, 16);
+
+	hashMap.set('Carlos', 'I am the old value.');
+	hashMap.clear();
+
+	expect(hashMap.length()).toBe(0);
+});

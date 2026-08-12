@@ -91,4 +91,7 @@ export default class HashMap {
 		}
 		return count;
 	}
+	clear() {
+		this.buckets = Array.from({ length: this.capacity }, () => []);
+	}
 }
