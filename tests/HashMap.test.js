@@ -75,3 +75,13 @@ test('Clear should remove all entries in the hash map', () => {
 
 	expect(hashMap.length()).toBe(0);
 });
+
+test('keys method returns all keys in the hash map', () => {
+	const hashMap = new HashMap(0.75, 16);
+
+	hashMap.set('Carlos', 'I am the old value.');
+	hashMap.set('Rama', 'New value');
+	hashMap.set('Sita', 'test');
+
+	expect(hashMap.keys()).toEqual(['Rama', 'Sita', 'Carlos']);
+});

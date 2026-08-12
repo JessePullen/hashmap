@@ -94,4 +94,13 @@ export default class HashMap {
 	clear() {
 		this.buckets = Array.from({ length: this.capacity }, () => []);
 	}
+	keys() {
+		const result = [];
+		for (const bucket of this.buckets) {
+			for (const entries of bucket) {
+				result.push(entries[0]);
+			}
+		}
+		return result;
+	}
 }
