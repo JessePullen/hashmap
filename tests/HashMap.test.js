@@ -56,3 +56,13 @@ test('Throws an error when hash returns an out-of-bounds index', () => {
 	// Anonymous function lets function run before checking for error toThrow
 	expect(() => hashMap.set('test', 'value')).toThrow('Trying to access index out of bounds');
 });
+
+test('Length should return number of stored keys inside the hash map', () => {
+	const hashMap = new HashMap(0.75, 16);
+
+	expect(hashMap.length()).toBe(0);
+
+	hashMap.set('Carlos', 'I am the old value.');
+
+	expect(hashMap.length()).toBe(1);
+});

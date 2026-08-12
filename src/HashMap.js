@@ -84,10 +84,11 @@ export default class HashMap {
 
 		return false;
 	}
+	length() {
+		let count = 0;
+		for (const bucket of this.buckets) {
+			count += bucket.length;
+		}
+		return count;
+	}
 }
-
-// Index out of range error
-
-// if (index < 0 || index >= buckets.length) {
-//   throw new Error("Trying to access index out of bounds");
-// }
