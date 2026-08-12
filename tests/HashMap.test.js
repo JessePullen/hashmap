@@ -109,3 +109,28 @@ test('entried method returns all keys and values in the hash map', () => {
 		['Carlos', 'I am the old value.'],
 	]);
 });
+
+test('Increasing list size above load increases capacity and rehashes all current entries to fit within new capacity', () => {
+	const hashMap = new HashMap(0.75, 16);
+
+	hashMap.set('apple', 'red');
+	hashMap.set('banana', 'yellow');
+	hashMap.set('carrot', 'orange');
+	hashMap.set('dog', 'brown');
+	hashMap.set('elephant', 'gray');
+	hashMap.set('frog', 'green');
+	hashMap.set('grape', 'purple');
+	hashMap.set('hat', 'black');
+	hashMap.set('ice cream', 'white');
+	hashMap.set('jacket', 'blue');
+	hashMap.set('kite', 'pink');
+	hashMap.set('lion', 'golden');
+
+	expect(hashMap.capacity).toBe(16);
+	expect(hashMap.hash('apple')).toBe(10);
+
+	hashMap.set('moon', 'silver');
+
+	expect(hashMap.capacity).toBe(32);
+	expect(hashMap.hash('apple')).toBe(26);
+});

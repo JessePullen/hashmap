@@ -17,6 +17,8 @@ export default class HashMap {
 		return hashCode;
 	}
 	set(key, value) {
+		this.resize();
+
 		const index = this.hash(key);
 
 		if (index < 0 || index >= this.buckets.length) {
@@ -120,5 +122,19 @@ export default class HashMap {
 			}
 		}
 		return result;
+	}
+	// Increase bucket capcity when load becomes too high and rehash all values to correctly sort into new bucket range
+	resize() {
+		if (this.length() >= this.capacity * this.loadFactor) {
+			this.capacity = this.capacity * 2;
+			const previousBuckets = this.buckets;
+			this.buckets = Array.from({ length: this.capacity }, () => []);
+
+			for (const bucket of previousBuckets) {
+				for (const entries of bucket) {
+					this.set(entries[0], entries[1]);
+				}
+			}
+		}
 	}
 }
